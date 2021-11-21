@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 
@@ -25,6 +24,12 @@ function App() {
 }
 */
 
+class Todo {
+  constructor({title, done}) {
+    this.title = title;
+    this.done = done;
+  }
+}
 
 class App extends React.Component {
 
@@ -32,8 +37,11 @@ class App extends React.Component {
     super();
     this.state = {
       message: "Hello World!",
-      logo: logo,
-      newTodo: ''
+      newTodo: '',
+      todos: [
+        new Todo({ title: "Learn React", done: false}),
+        new Todo({ title: "Learn JSX", done: false})
+      ]
     }
 
   }
@@ -48,6 +56,10 @@ class App extends React.Component {
   formSubmitted(event) {
     event.preventDefault();
     console.log(`Form submitted! ${this.state.newtodo}`);
+    this.setState({
+      todos: [ ...this.state.todos, new Todo({ title: this.state.newtodo, done: false })]
+    })
+    console.log(this.state.todos)
   }
 
   render() {
@@ -59,8 +71,16 @@ class App extends React.Component {
         <form onSubmit={e => this.formSubmitted(e)}>
           <label htmlFor="newTodo" >New Todo</label>
           <input onChange={e => this.newTodoOnChange(e)} id="newTodo" name="newTodo" />
-          <button type="submit">Add todo  </button>
+          <button type="submit">Add todo</button>
         </form>
+        <ul>
+          { 
+            this.state.todos.map((task) => { 
+              return <li key={task.title}>{task.title}</li>
+            }
+            )
+          }
+        </ul>
       </div>
     )
   }
