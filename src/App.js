@@ -49,16 +49,21 @@ class App extends React.Component {
   newTodoOnChange(e) {
     console.log(e.target.value)
     this.setState({
-      newtodo: e.target.value
+      newTodo: e.target.value
     })
   }
 
   formSubmitted(event) {
     event.preventDefault();
-    console.log(`Form submitted! ${this.state.newtodo}`);
+    console.log(`Form submitted! ${this.state.newTodo}`);
+    this.state.todos.push(new Todo({ title: this.state.newTodo, done: false }))
     this.setState({
-      todos: [ ...this.state.todos, new Todo({ title: this.state.newtodo, done: false })]
+      newTodo: '',
+      todos: this.state.todos 
     })
+    // this.setState({
+    //   todos: [ ...this.state.todos, new Todo({ title: this.state.newTodo, done: false })]
+    // })
     console.log(this.state.todos)
   }
 
@@ -70,7 +75,7 @@ class App extends React.Component {
         <h1>{this.state.message}</h1>
         <form onSubmit={e => this.formSubmitted(e)}>
           <label htmlFor="newTodo" >New Todo</label>
-          <input onChange={e => this.newTodoOnChange(e)} id="newTodo" name="newTodo" />
+          <input onChange={e => this.newTodoOnChange(e)} id="newTodo" name="newTodo" value={ this.state.newTodo }/>
           <button type="submit">Add todo</button>
         </form>
         <ul>
