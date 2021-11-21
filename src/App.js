@@ -43,7 +43,6 @@ class App extends React.Component {
         new Todo({ title: "Learn JSX", done: false})
       ]
     }
-
   }
 
   newTodoOnChange(e) {
@@ -56,14 +55,24 @@ class App extends React.Component {
   formSubmitted(event) {
     event.preventDefault();
     console.log(`Form submitted! ${this.state.newTodo}`);
-    this.state.todos.push(new Todo({ title: this.state.newTodo, done: false }))
+    // this.state.todos.push(new Todo({ title: this.state.newTodo, done: false }))
+    // this.setState({
+    //   newTodo: '',
+    //   todos: this.state.todos 
+    // })
     this.setState({
       newTodo: '',
-      todos: this.state.todos 
+      todos: [ ...this.state.todos, new Todo({ title: this.state.newTodo, done: false })]
     })
-    // this.setState({
-    //   todos: [ ...this.state.todos, new Todo({ title: this.state.newTodo, done: false })]
-    // })
+    console.log(this.state.todos)
+  }
+
+  toggleDone(e, i) {
+    console.log(e.target.checked);
+    console.log(this.state.todos[i])
+    let td = [ ...this.state.todos ];
+    td[i].done = e.target.checked;
+    this.setState({ todos: td })
     console.log(this.state.todos)
   }
 
@@ -80,10 +89,12 @@ class App extends React.Component {
         </form>
         <ul>
           { 
-            this.state.todos.map((task) => { 
+            this.state.todos.map((task, index) => { 
               return <li key={task.title}>
-                <input name="{task.title}" type="checkbox" />
-                <label htmlFor="{task.title}">{task.title}</label>
+                <input onChange={e => this.toggleDone(e, index)} name="{task.title}" type="checkbox" />
+                <label htmlFor="{task.title}" className={ task.done? 'done' : ''} >
+                  {task.title}
+                </label>
 
               </li>
             }
