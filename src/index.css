@@ -9,11 +9,13 @@ body {
 }
 */
 
+/*
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+*/
+/*
 body {
   font-family: sans-serif;
   padding-top: 1em;
@@ -22,10 +24,19 @@ body {
   width: 80%;
   margin: 0 auto;
 }
-input, textarea, button, p, div, section, article, select {
-  display: 'block';
-  width: 100%;
+*/
+
+body {
+  margin: 0;
+  padding: 0;
   font-family: sans-serif;
-  font-size: 1em;
-  margin: 0.5em;
+}
+
+input[type="checkbox"] {
+  display: inline;
+  width: auto;
+}
+
+.done {
+  text-decoration: line-through;
 }

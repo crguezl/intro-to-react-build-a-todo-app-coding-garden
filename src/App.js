@@ -1,4 +1,4 @@
-import './App.css';
+//import './App.css';
 import React from 'react';
 
 /*
@@ -81,7 +81,11 @@ class App extends React.Component {
         <ul>
           { 
             this.state.todos.map((task) => { 
-              return <li key={task.title}>{task.title}</li>
+              return <li key={task.title}>
+                <input name="{task.title}" type="checkbox" />
+                <label htmlFor="{task.title}">{task.title}</label>
+
+              </li>
             }
             )
           }
