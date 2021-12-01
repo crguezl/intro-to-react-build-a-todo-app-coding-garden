@@ -1,6 +1,8 @@
-From coding garden tutorial
+From coding garden tutorial *Intro to React - Build a Todo App*
 
+<https://youtu.be/vIA130MePY8>
 
+repo is here <https://github.com/CodingGarden/intro-react-todo>
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
